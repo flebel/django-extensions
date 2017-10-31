@@ -13,19 +13,19 @@ from django_extensions.db.fields import (
 
 class TimeStampedModel(models.Model):
     """ TimeStampedModel
-    An abstract base class model that provides self-managed "created" and
-    "modified" fields.
+    An abstract base class model that provides self-managed "created at" and
+    "modified at" fields.
     """
-    created = CreationDateTimeField(_('created'))
-    modified = ModificationDateTimeField(_('modified'))
+    created_at = CreationDateTimeField(_('created at'))
+    modified_at = ModificationDateTimeField(_('modified at'))
 
     def save(self, **kwargs):
         self.update_modified = kwargs.pop('update_modified', getattr(self, 'update_modified', True))
         super(TimeStampedModel, self).save(**kwargs)
 
     class Meta:
-        get_latest_by = 'modified'
-        ordering = ('-modified', '-created',)
+        get_latest_by = 'modified_at'
+        ordering = ('-modified_at', '-created_at',)
         abstract = True
 
 

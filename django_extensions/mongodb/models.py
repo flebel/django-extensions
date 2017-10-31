@@ -19,8 +19,8 @@ class TimeStampedModel(Document):
     An abstract base class model that provides self-managed "created" and
     "modified" fields.
     """
-    created = CreationDateTimeField()
-    modified = ModificationDateTimeField()
+    created_at = CreationDateTimeField()
+    modified_at = ModificationDateTimeField()
 
     class Meta:
         abstract = True
